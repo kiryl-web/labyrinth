@@ -13,8 +13,6 @@ def drawLabyrinth(normalizedMap: list[list[str]]):
     goal = findEndCoordinates(normalizedMap)
     player = findPlayerCoordinates(normalizedMap)
 
-
-
     width = len(normalizedMap[0])
     height = len(normalizedMap)
 

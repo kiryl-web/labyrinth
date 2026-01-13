@@ -37,22 +37,22 @@ def drawLabyrinth(normalizedMap: list[list[str]], ori: list[list[str]], score:in
     normalizedMap[y][x] = "B"
 
     def north():
-        if surroundings[0] != "#" and (y - 1) > 0:
+        if surroundings[0] != "#": #and (y - 1) > 0:
             normalizedMap[y-1][x] = "n"
             return normalizedMap
 
     def west():
-        if surroundings[1] != "#" and (x - 1) > 0:
+        if surroundings[1] != "#": #and (x - 1) > 0:
             normalizedMap[y][x-1] = "w"
             return normalizedMap
 
     def south():
-        if surroundings[2] != "#" and (y + 1) < height:
+        if surroundings[2] != "#": #and (y + 1) <= height:
             normalizedMap[y+1][x] = "s"
             return normalizedMap
 
     def east():
-        if surroundings[3] != "#" and (x + 1) < width:
+        if surroundings[3] != "#": #and (x + 1) <= width:
             normalizedMap[y][x+1] = "e"
             return normalizedMap
 
@@ -93,7 +93,6 @@ def getColor(char: str):
     if char == "w": return "West"
     if char == "s": return "South"
     if char == "e": return "East"
-
 
     return char
 
