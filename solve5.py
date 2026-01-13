@@ -94,7 +94,8 @@ def getColor(char: str):
     if char == "s": return "South"
     if char == "e": return "East"
 
-    return "Blue"
+
+    return char
 
 
 def main():
