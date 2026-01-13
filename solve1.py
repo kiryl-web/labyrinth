@@ -93,7 +93,7 @@ def getColor(char: str):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Labyrinth 3.1–3.3: read + normalize + print")
+    parser = argparse.ArgumentParser(description="Labyrinth")
     parser.add_argument("-f", "--file", help="Path to labyrinth text file")
     args = parser.parse_args()
 

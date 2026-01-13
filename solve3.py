@@ -1,9 +1,9 @@
 import argparse
-from time import sleep
 
-from find_coordinates import getSurroundings, findEndCoordinates, findPlayerCoordinates, findStartCoordinates
-from read import getNormalizedCharMap
+from find_coordinates import getSurroundings, findStartCoordinates
 from original import gfx_stack as gfx
+from read import getNormalizedCharMap
+
 
 def drawLabyrinth(normalizedMap: list[list[str]]):
     try:
@@ -78,7 +78,7 @@ def getColor(char: str):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Labyrinth 3.1–3.3: read + normalize + print")
+    parser = argparse.ArgumentParser(description="Labyrinth")
     parser.add_argument("-f", "--file", help="Path to labyrinth text file")
     args = parser.parse_args()
 
