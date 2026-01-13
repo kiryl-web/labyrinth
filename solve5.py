@@ -11,6 +11,10 @@ def drawLabyrinth(normalizedMap: list[list[str]], ori: list[list[str]], score:in
             gfx.set_pixel((column, row), getColor(normalizedMap[row][column]))
 
     goal = findEndCoordinates(normalizedMap)
+
+    if goal == (-1,-1):
+        return normalizedMap, score
+
     player = findPlayerCoordinates(normalizedMap)
 
     width = len(normalizedMap[0])
@@ -22,7 +26,6 @@ def drawLabyrinth(normalizedMap: list[list[str]], ori: list[list[str]], score:in
     if ori[y][x].isdigit():
         score += int(ori[y][x])
         print(score)
-
 
     orientation = normalizedMap[y][x]
 
@@ -79,6 +82,8 @@ def drawLabyrinth(normalizedMap: list[list[str]], ori: list[list[str]], score:in
         if west()  is not None: return normalizedMap, score
         if south() is not None: return normalizedMap, score
         if east()  is not None: return normalizedMap, score
+
+    return normalizedMap, score
 
 def getColor(char: str):
 

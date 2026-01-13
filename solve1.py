@@ -75,6 +75,8 @@ def drawLabyrinth(normalizedMap: list[list[str]]):
         if south() is not None: return normalizedMap
         if east()  is not None: return normalizedMap
 
+    return normalizedMap
+
 def getColor(char: str):
 
     if char == "0": return "White"
