@@ -58,7 +58,7 @@ def findPlayerCoordinates(normalizedMap: list[list[str]]) -> (int,int):
     for row in range(len(normalizedMap)): #Zeile
         for column in range(len(normalizedMap[row])): #Spalte
             if normalizedMap[row][column] == "P" or normalizedMap[row][column] == "n" or normalizedMap[row][column] == "s" or normalizedMap[row][column] == "e" or normalizedMap[row][column] == "w":
-                print("Player at", column, " ", row)
+                #print("Player at", column, " ", row)
                 return column,row
 
     return findStartCoordinates(normalizedMap)

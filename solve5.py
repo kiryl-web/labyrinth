@@ -4,7 +4,7 @@ from read import getNormalizedCharMap
 from original import gfx_stack as gfx
 
 #Nach rechts, ansonsten geradeaus, ansonsten nach links, ansonsten zrück
-def drawLabyrinth(normalizedMap: list[list[str]]):
+def drawLabyrinth(normalizedMap: list[list[str]], ori: list[list[str]], score:int):
 
     for row in range(len(normalizedMap)):  # Zeile
         for column in range(len(normalizedMap[row])):  # Spalte
@@ -13,13 +13,16 @@ def drawLabyrinth(normalizedMap: list[list[str]]):
     goal = findEndCoordinates(normalizedMap)
     player = findPlayerCoordinates(normalizedMap)
 
-
-
     width = len(normalizedMap[0])
     height = len(normalizedMap)
 
     x = player[0]
     y = player[1]
+
+    if ori[y][x].isdigit():
+        score += int(ori[y][x])
+        print(score)
+
 
     orientation = normalizedMap[y][x]
 
@@ -54,28 +57,28 @@ def drawLabyrinth(normalizedMap: list[list[str]]):
             return normalizedMap
 
     if orientation == "n":
-        if east()  is not None: return normalizedMap
-        if north() is not None: return normalizedMap
-        if west()  is not None: return normalizedMap
-        if south() is not None: return normalizedMap
+        if east()  is not None: return normalizedMap, score
+        if north() is not None: return normalizedMap, score
+        if west()  is not None: return normalizedMap, score
+        if south() is not None: return normalizedMap, score
 
     if orientation == "e":
-        if south() is not None: return normalizedMap
-        if east()  is not None: return normalizedMap
-        if north() is not None: return normalizedMap
-        if west()  is not None: return normalizedMap
+        if south() is not None: return normalizedMap, score
+        if east()  is not None: return normalizedMap, score
+        if north() is not None: return normalizedMap, score
+        if west()  is not None: return normalizedMap, score
 
     if orientation == "s":
-        if west()  is not None: return normalizedMap
-        if south() is not None: return normalizedMap
-        if east()  is not None: return normalizedMap
-        if north() is not None: return normalizedMap
+        if west()  is not None: return normalizedMap, score
+        if south() is not None: return normalizedMap, score
+        if east()  is not None: return normalizedMap, score
+        if north() is not None: return normalizedMap, score
 
     if orientation == "w":
-        if north() is not None: return normalizedMap
-        if west()  is not None: return normalizedMap
-        if south() is not None: return normalizedMap
-        if east()  is not None: return normalizedMap
+        if north() is not None: return normalizedMap, score
+        if west()  is not None: return normalizedMap, score
+        if south() is not None: return normalizedMap, score
+        if east()  is not None: return normalizedMap, score
 
 def getColor(char: str):
 
@@ -103,11 +106,14 @@ def main():
         raise Exception("Provide --file PATH")
 
     normalizedMap = getNormalizedCharMap(args.file)
+    originalMap = getNormalizedCharMap(args.file)
+    a = normalizedMap
+    b = 0
 
     gfx.init_once(surface_resolution=(len(normalizedMap[0])*1,len(normalizedMap)*1),window_title="",screen_resolution=(600, 600/len(normalizedMap[0]) * len(normalizedMap)*1))
 
     while not gfx.stop_prog:
-        normalizedMap = drawLabyrinth(normalizedMap)
+        a,b = drawLabyrinth(a, originalMap, b)
         gfx.event_loop()
 
 if __name__ == "__main__":
